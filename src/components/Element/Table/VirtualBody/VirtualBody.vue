@@ -14,7 +14,6 @@ const SLOT_TYPE = {
     FOOTER: "tfoot"
 }
 
-
 export default defineComponent({
     name: "VirtualBody",
     extends: virtual,
@@ -22,16 +21,16 @@ export default defineComponent({
         renderColGroup: { type: Function, default: void 0 }
     },
     methods: {
-        getRenderSlots (h) {
+        getRenderSlots(h) {
             const slots = []
             const { start, end } = this.range
             const { dataSources, dataKey, itemClass, itemTag, itemStyle, isHorizontal, extraProps, dataComponent, itemScopedSlots } = this
             const slotComponent = this.$scopedSlots && this.$scopedSlots.item
-            for (let index = start; index <= end; index++) {
+            for(let index = start; index <= end; index++) {
                 const dataSource = dataSources[index]
-                if (dataSource) {
+                if(dataSource) {
                     const uniqueKey = typeof dataKey === "function" ? dataKey(dataSource, index) : dataSource[dataKey]
-                    if (typeof uniqueKey === "string" || typeof uniqueKey === "number") {
+                    if(typeof uniqueKey === "string" || typeof uniqueKey === "number") {
                         slots.push(h(Item, {
                             props: {
                                 index,
@@ -58,7 +57,7 @@ export default defineComponent({
             return slots
         }
     },
-    render (h) {
+    render(h) {
         const { footer } = this.$slots
         const { padFront, padBehind } = this.range
         const { isHorizontal, pageMode, rootTag, wrapTag, wrapClass, wrapStyle, footerTag, footerClass, footerStyle, renderColGroup } = this

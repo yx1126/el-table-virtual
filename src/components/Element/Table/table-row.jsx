@@ -9,7 +9,7 @@ export default defineComponent({
     computed: {
         table() {
             let parent = this.$parent;
-            while (parent.$options.tableId !== "ElTable") {
+            while(parent.$options.tableId !== "ElTable") {
                 parent = parent.$parent;
             }
             return parent;
@@ -32,7 +32,7 @@ export default defineComponent({
         } = this;
         const tds = columns.map((column, cellIndex) => {
             const { rowspan, colspan } = this.getSpan(row, column, $index, cellIndex);
-            if (!rowspan || !colspan) {
+            if(!rowspan || !colspan) {
                 return null;
             }
             const columnData = { ...column };
@@ -46,18 +46,18 @@ export default defineComponent({
                 row,
                 $index
             };
-            if (cellIndex === firstDefaultColumnIndex && treeRowData) {
+            if(cellIndex === firstDefaultColumnIndex && treeRowData) {
                 data.treeNode = {
                     indent: treeRowData.level * treeIndent,
                     level: treeRowData.level
                 };
-                if (typeof treeRowData.expanded === "boolean") {
+                if(typeof treeRowData.expanded === "boolean") {
                     data.treeNode.expanded = treeRowData.expanded;
                     // 表明是懒加载
-                    if ("loading" in treeRowData) {
+                    if("loading" in treeRowData) {
                         data.treeNode.loading = treeRowData.loading;
                     }
-                    if ("noLazyChildren" in treeRowData) {
+                    if("noLazyChildren" in treeRowData) {
                         data.treeNode.noLazyChildren = treeRowData.noLazyChildren;
                     }
                 }

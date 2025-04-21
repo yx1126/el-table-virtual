@@ -240,25 +240,23 @@ export default defineComponent({
                     style: { [isVertical ? "height" : "width"]: `${totalSize}px` } 
                 }),
                 h(listTag, {
-                      class: ["virtual-scroll__list", listClass],
-                      style: getStyles(listStyle, {
-                          transform: `translate${[isVertical ? "Y" : "X"]}(${startIndex * minItemSize}px)`
-                      }),
-                  },
-                  dataList.map((data) => {
-                      const uniqueKey = isFn(dataKey) ? dataKey(data) : data.item[dataKey];
-                      if(typeof uniqueKey === "string" || typeof uniqueKey === "number") {
-                          return renderSlot(slots, "default", { ...data, uniqueKey  }, () => {
-                              return h(itemComponent ?? "div", { 
-                                  props: data,
-                                  uniqueKey
-                              })
-                          })
-                      } else {
-                          console.warn(`Cannot get the data-key '${dataKey}' from data.`)
-                      }
-                  })
-                )
+                    class: ["virtual-scroll__list", listClass],
+                    style: getStyles(listStyle, {
+                        transform: `translate${[isVertical ? "Y" : "X"]}(${startIndex * minItemSize}px)`
+                    }),
+                }, dataList.map((data) => {
+                    const uniqueKey = isFn(dataKey) ? dataKey(data) : data.item[dataKey];
+                    if(typeof uniqueKey === "string" || typeof uniqueKey === "number") {
+                        return renderSlot(slots, "default", { ...data, uniqueKey }, () => {
+                            return h(itemComponent ?? "div", { 
+                                props: data,
+                                uniqueKey
+                            })
+                        })
+                    } 
+                    console.warn(`Cannot get the data-key '${dataKey}' from data.`)
+                    return null
+                }))
             ]),
             isExistScroll && !native ? h("div", {
                 class: ["virtual-scroll__bar"],
@@ -267,8 +265,8 @@ export default defineComponent({
                     ref: "thumbRef",
                     class: "virtual-scroll__thumb",
                     style: {
-                        transform: `translate${isVertical ? 'Y' : 'X'}(${translateXY}px)`,
-                        [isVertical ? "height" : "width"]: thumbSize + 'px'
+                        transform: `translate${isVertical ? "Y" : "X"}(${translateXY}px)`,
+                        [isVertical ? "height" : "width"]: thumbSize + "px"
                     },
                     on: {
                         mousedown: onMousedown

@@ -5,7 +5,7 @@ import { Item } from "vue-virtual-scroll-list/src/item";
 export default defineComponent({
     name: "VirtualItem",
     extends: Item,
-    render () {
+    render() {
         const { extraProps = {}, index, source, slotComponent } = this
         const props = {
             ...extraProps,

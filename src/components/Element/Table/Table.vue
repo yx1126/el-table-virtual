@@ -103,9 +103,9 @@ export default defineComponent({
         const virtual = this.virtual;
         this.layout.updateScrollY = function updateScrollY() {
             const height = this.height;
-            if (height === null) return false;
+            if(height === null) return false;
             const bodyWrapper = this.table.bodyWrapper;
-            if (this.table.$el && bodyWrapper) {
+            if(this.table.$el && bodyWrapper) {
                 const body = bodyWrapper.querySelector(virtual ? ".el-table-virtual__body-main" : ".el-table__body");
                 const prevScrollY = this.scrollY;
                 const scrollY = body.offsetHeight > this.bodyHeight;
@@ -119,8 +119,8 @@ export default defineComponent({
         syncPostion() {
             const { scrollLeft, scrollTop, offsetWidth, scrollWidth } = this.bodyWrapper;
             const { headerWrapper, footerWrapper, fixedBodyWrapper, rightFixedBodyWrapper, fixedVirtualBodyWrapper, rightVirtualFixedBodyWrapper } = this.$refs;
-            if (headerWrapper) headerWrapper.scrollLeft = scrollLeft;
-            if (footerWrapper) footerWrapper.scrollLeft = scrollLeft;
+            if(headerWrapper) headerWrapper.scrollLeft = scrollLeft;
+            if(footerWrapper) footerWrapper.scrollLeft = scrollLeft;
             if(this.virtual) {
                 if(fixedVirtualBodyWrapper) {
                     // fixedVirtualBodyWrapper.$el.scrollTop = scrollTop; scrollToOffset
@@ -131,17 +131,17 @@ export default defineComponent({
                     rightVirtualFixedBodyWrapper.scrollToOffset(scrollTop);
                 }
             } else {
-                if (fixedBodyWrapper) {
+                if(fixedBodyWrapper) {
                     fixedBodyWrapper.scrollTop = scrollTop;
                 }
-                if (rightFixedBodyWrapper) {
+                if(rightFixedBodyWrapper) {
                     rightFixedBodyWrapper.scrollTop = scrollTop;
                 }
             }
             const maxScrollLeftPosition = scrollWidth - offsetWidth - 1;
-            if (scrollLeft >= maxScrollLeftPosition) {
+            if(scrollLeft >= maxScrollLeftPosition) {
                 this.scrollPosition = "right";
-            } else if (scrollLeft === 0) {
+            } else if(scrollLeft === 0) {
                 this.scrollPosition = "left";
             } else {
                 this.scrollPosition = "middle";
@@ -150,7 +150,6 @@ export default defineComponent({
     }
 });
 </script>
-
 
 <style lang="scss" scoped>
 .el-table.el-table--virtual ::v-deep {
@@ -195,7 +194,6 @@ export default defineComponent({
     div[node="td"].el-table__cell.gutter {
         width: 0
     }
-
 
     .el-table__fixed-footer-wrapper tbody div[node="td"].el-table__cell {
         border-top: 1px solid #EBEEF5;

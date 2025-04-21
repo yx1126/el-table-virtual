@@ -11,8 +11,8 @@ export default {
         label: String,
         disabled: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
     },
-};
+}
 </script>

@@ -23,7 +23,7 @@
                 </el-table-column>
             </el-table>
         </div>
-        <div class="table">
+        <!-- <div class="table">
             <el-table :virtual="false" :data="data" height="400" border stripe>
                 <el-table-column fixed prop="id" label="id" width="80" align="center" />
                 <el-table-column prop="date" label="日期" width="150" />
@@ -40,12 +40,12 @@
                     </template>
                 </el-table-column>
             </el-table>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script setup>
-const data = Array.from({ length: 100 }, (_, i) => {
+const data = Array.from({ length: 1000 }, (_, i) => {
     return {
         id: "id-" + i,
         name: "王小虎" + i,
